@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: white;
+  background-color: rgb(53, 202, 155);
 }
 .title {
   font-size: 1.5em;
@@ -15,7 +15,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 40px;
   max-width: 1200px;
   width: 100%;
   padding: 20px;

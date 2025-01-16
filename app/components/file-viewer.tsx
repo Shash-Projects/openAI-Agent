@@ -30,11 +30,18 @@ const FileViewer = () => {
   }, []);
 
   const fetchFiles = async () => {
-    const resp = await fetch("/api/assistants/files", {
-      method: "GET",
-    });
-    const data = await resp.json();
-    setFiles(data);
+
+    try {
+      const resp = await fetch("/api/assistants/files", {
+        method: "GET",
+      });
+      const data = await resp.json();
+      setFiles(data);
+    } catch (error) {
+      console.error("Error fetching files", error); 
+      
+    }
+    
   };
 
   const handleFileDelete = async (fileId) => {
@@ -45,13 +52,21 @@ const FileViewer = () => {
   };
 
   const handleFileUpload = async (event) => {
-    const data = new FormData();
-    if (event.target.files.length < 0) return;
-    data.append("file", event.target.files[0]);
-    await fetch("/api/assistants/files", {
-      method: "POST",
-      body: data,
-    });
+
+    try {
+
+      const data = new FormData();
+      if (event.target.files.length < 0) return;
+      data.append("file", event.target.files[0]);
+      await fetch("/api/assistants/files", {
+        method: "POST",
+        body: data,
+      });
+
+    } catch (error) {
+      console.error("Error uploading file", error);
+    }
+    
   };
 
   return (

@@ -198,9 +198,10 @@ const Chat = ({
             if (!eventText.trim()) continue;
             
             const event = JSON.parse(eventText);
-            console.log("Parsed event:", event);
+            // uncomment to check wheteher stream_events are being listened
+            //console.log("Parsed event:", event);
             
-            // Handle different event types
+            // Handle different event types ( Once ai message is created, appendingg it to the msg array )
             switch (event.event) {
               case "thread.message.created":
                 console.log("Creating new message");
@@ -210,7 +211,7 @@ const Chat = ({
               case "thread.message.delta":
                 if (event.data?.delta?.content?.[0]?.text?.value) {
                   const textValue = event.data.delta.content[0].text.value;
-                  console.log("Adding text:", textValue);
+                  //console.log("Adding text:", textValue);
                   setMessages(prevMessages => {
                     const lastMessage = prevMessages[prevMessages.length - 1];
                     if (lastMessage?.role === "assistant") {
